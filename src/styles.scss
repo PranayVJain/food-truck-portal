@@ -2,3 +2,54 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.dialog-form-default .mat-dialog-container {
+    padding: 0;
+    padding-bottom: 30px;
+    overflow: hidden;
+  
+    // title
+    .mat-dialog-title {
+      background-color: inherit;
+      color: #707070;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+    }
+  
+    .mat-dialog-title .dialog-title {
+      margin-left: 24px;
+      height: 24px;
+      opacity: 0.87;
+      color: #080808;
+      font-size: 20px;
+      font-weight: bold;
+      letter-spacing: 0.25px;
+      line-height: 24px;
+      margin-top: 0px;
+      margin-bottom: 0px;
+    }
+  
+    .mat-dialog-title button {
+      align-self: flex-start;
+      margin-top: 12px;
+      margin-right: 12px;
+    }
+  
+    // content
+    .mat-dialog-content {
+      margin: 0;
+      //padding-top: 20px;
+      //width: 600px; // default width
+    }
+  
+    .mat-tab-body-content {
+      padding-top: 10px;
+    }
+
+    // form fields
+  mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}

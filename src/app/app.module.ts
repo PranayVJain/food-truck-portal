@@ -19,13 +19,15 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatCardModule } from '@angular/material/card';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AboutComponent } from './about/about.component';
 import { FoodTruckContainerComponent } from './food-truck-container/food-truck-container.component';
-import {MatRadioModule} from '@angular/material/radio';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AddFoodTruckComponent } from './dialogs/add-food-truck/add-food-truck.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 
@@ -61,6 +63,8 @@ import { AddFoodTruckComponent } from './dialogs/add-food-truck/add-food-truck.c
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatProgressBarModule,
+    MatDialogModule,
     RouterModule.forRoot([])
   ],
   providers: [],
