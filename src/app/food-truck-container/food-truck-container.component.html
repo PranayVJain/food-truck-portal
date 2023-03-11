@@ -1,0 +1,21 @@
+<div>
+    <mat-radio-group aria-label="Select an option">
+        <mat-radio-button value="today" (change)="onDateRangeSelected($event)">Today</mat-radio-button>
+        <mat-radio-button value="custom" (change)="onDateRangeSelected($event)">Custom</mat-radio-button>
+    </mat-radio-group>
+
+    <mat-form-field appearance="fill" class="example-form-field" *ngIf="customDateRange">
+        <mat-label>Choose a date</mat-label>
+        <input matInput [matDatepicker]="datepicker">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+        <mat-datepicker #datepicker>
+            <mat-datepicker-actions>
+                <button mat-button matDatepickerCancel>Cancel</button>
+                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+            </mat-datepicker-actions>
+        </mat-datepicker>
+    </mat-form-field>
+
+    <button mat-button>Add Food Truck</button>
+</div>

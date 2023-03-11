@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
+import { User } from './user/user';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContextService {
 
-  adminUser: boolean = false;
+  currentUser: User;
+
   constructor() { }
 
-  setAsAdminUser(){
-    this.adminUser = true;
+  setUser(user: User){
+    this.currentUser = user;
   }
 
-  isAdminUser(){
-    return this.adminUser;
+  getUser(){
+    return this.currentUser;
   }
 }

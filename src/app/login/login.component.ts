@@ -1,37 +1,47 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { ContextService } from '../context.service';
+import { UserType } from "../user/user-type"
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
-  loginButtonsVisible: boolean = true;
+  username: string;
+  password: string;
   form: UntypedFormGroup;
-  constructor(private contextService: ContextService, private formBuilder: UntypedFormBuilder){
+  constructor(private contextService: ContextService, private formBuilder: UntypedFormBuilder, private router: Router) {
   }
 
   ngOnInit(): void {
     this.buildForm();
   }
 
-  buildForm(){
+  buildForm() {
     this.form = this.formBuilder.group({
-      username: ['',[Validators.required]],
-      password: ['',[Validators.required]]
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required]]
     })
 
   }
 
-  login(){
-    this.loginButtonsVisible = false
+  login(): void {
+    if (this.form.get('username').value == 'admin' && this.form.get('password').value == 'admin') {
+      this.contextService.setUser({ name: this.form.get('username').value, 'type': UserType.ADMIN });
+      this.router.navigate(["/"]);
+    } else {
+      alert("Invalid credentials");
+    }
+
   }
-  
-  cancel(){
-    this.loginButtonsVisible = true
+
+  loginAsGuestUser() {
+    this.contextService.setUser({ name: 'Guest', 'type': UserType.GUEST });
+    this.router.navigate(["/"]);
   }
 
 }
