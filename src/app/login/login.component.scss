@@ -1,0 +1,10 @@
+.login-button-grid {
+    display: inline-grid;
+    grid-template-rows: 2fr 1fr 2fr;
+}
+
+.align-to-center {
+    position: absolute;
+    top: 50%;
+    right: 50%;
+}

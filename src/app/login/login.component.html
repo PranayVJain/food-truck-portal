@@ -1,0 +1,21 @@
+<div class="align-to-center">
+    <div class="login-button-grid" *ngIf="loginButtonsVisible">
+        <button mat-button (click)="login()">I am admin</button>
+        <mat-label></mat-label>
+        <button mat-button (click)="login()">I am guest</button>
+    </div>
+    <div *ngIf="!loginButtonsVisible">
+        <form [formGroup]="form">
+            <mat-form-field appearance="outline">
+                <mat-label>UserName</mat-label>
+                <input matInput type="text" placeholder="Enter username" required formControlName="username">
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Password</mat-label>
+                <input matInput type="password" required formControlName="password">
+            </mat-form-field>
+            <button mat-button (click)="login()">Login</button>
+            <button mat-button (click)="cancel()">Cancel</button>
+        </form>
+    </div>
+</div>
