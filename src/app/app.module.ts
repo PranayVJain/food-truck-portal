@@ -32,6 +32,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FoodTrucksListComponent } from './food-trucks-list/food-trucks-list.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import { CommonModule } from '@angular/common';
 
 
 @NgModule({
@@ -50,6 +51,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
+    CommonModule,
     MatFormFieldModule,
     MatInputModule,
     ReactiveFormsModule,

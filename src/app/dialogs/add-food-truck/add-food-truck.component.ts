@@ -4,6 +4,7 @@ import { ContextService } from 'src/app/context.service';
 import { Foodtruck } from 'src/app/models/foodtruck';
 import { FoodTruckService } from 'src/app/service/food-truck.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-add-food-truck',
@@ -17,7 +18,14 @@ export class AddFoodTruckComponent implements OnInit {
   description: string;
   date: string;
   form: UntypedFormGroup;
-  constructor(public dialogRef: MatDialogRef<AddFoodTruckComponent>,@Inject(MAT_DIALOG_DATA) public data: Foodtruck, private contextService: ContextService, private formBuilder: UntypedFormBuilder, private foodTruckSvc: FoodTruckService) {
+ 
+
+  constructor(public dialogRef: MatDialogRef<AddFoodTruckComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: Foodtruck, 
+    private contextService: ContextService, 
+    private formBuilder: UntypedFormBuilder, 
+    private foodTruckSvc: FoodTruckService
+    ) {
   }
 
   ngOnInit(): void {
@@ -25,10 +33,11 @@ export class AddFoodTruckComponent implements OnInit {
   }
 
   buildForm() {
+    const datepipe = new DatePipe('en-US');
     this.form = this.formBuilder.group({
       name: [this.data ? this.data.name : '', [Validators.required]],
       description: [this.data ? this.data.description : '', [Validators.required]],
-      date: [this.data ? this.data.date : '', [Validators.required]]
+      date: [this.data ? datepipe.transform(this.data.date, 'dd/MM/yyyy') : '', [Validators.required]]
     })
 
   }
@@ -38,7 +47,7 @@ export class AddFoodTruckComponent implements OnInit {
     this.foodTruckSvc.addFoodTruck({   
       name: this.form.get('name').value,
       description: this.form.get('description').value,
-      availableDate: '2023-03-11T06:39:29.216789400Z',
+      availableDate: this.form.get('date').value,
     }).subscribe(data => {
       console.log(`Response ${data}`);
     }, err => {
@@ -55,7 +64,7 @@ export class AddFoodTruckComponent implements OnInit {
       id: this.data.id,
       name: this.form.get('name').value,
       description: this.form.get('description').value,
-      availableDate: '2023-03-11T06:39:29.216789400Z',
+      availableDate: this.form.get('date').value,
     }).subscribe(data => {
       console.log(`Response ${data}`);
     }, err => {
