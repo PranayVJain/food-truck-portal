@@ -37,8 +37,7 @@ export class FoodTrucksListComponent {
     });
     dialogRef.afterClosed().subscribe(result => {
       this.foodTruckService.getAllFoodTrucks().subscribe((response: any) => {
-        console.log(response);
-        this.foodTruckList =  response;
+        this.dataSource.data =  response;
      });
     });
 

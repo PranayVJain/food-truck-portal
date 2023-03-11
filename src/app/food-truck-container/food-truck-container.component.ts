@@ -24,7 +24,6 @@ export class FoodTruckContainerComponent {
     } else {
       this.foodTruckService.getAllFoodTrucks().subscribe((response: any) => {
          console.log(response);
-         this.foodTruckList = [];
          this.foodTruckList = response;
       });
       this.customDateRange = false;
@@ -36,5 +35,10 @@ export class FoodTruckContainerComponent {
        panelClass: "dialog-form-default",
        width: '600px'
     });
-  }
+    dialogRef.afterClosed().subscribe(result => {
+      this.foodTruckService.getAllFoodTrucks().subscribe((response: any) => {
+        this.foodTruckList = response;
+     });
+  });
+}
 }
