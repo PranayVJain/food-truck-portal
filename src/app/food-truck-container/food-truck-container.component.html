@@ -18,4 +18,5 @@
     </mat-form-field>
 
     <button mat-button (click)="openAddFoodTruckDialog()">Add Food Truck</button>
+    <app-food-trucks-list *ngIf="foodTruckList.length" [foodTruckList] = "foodTruckList"></app-food-trucks-list>
 </div>

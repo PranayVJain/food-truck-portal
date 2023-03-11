@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ContextService } from 'src/app/context.service';
+import { Foodtruck } from 'src/app/models/foodtruck';
+import { FoodTruckService } from 'src/app/service/food-truck.service';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-add-food-truck',
@@ -14,23 +17,62 @@ export class AddFoodTruckComponent implements OnInit {
   description: string;
   date: string;
   form: UntypedFormGroup;
-  constructor(private contextService: ContextService, private formBuilder: UntypedFormBuilder) {
+  constructor(public dialogRef: MatDialogRef<AddFoodTruckComponent>,@Inject(MAT_DIALOG_DATA) public data: Foodtruck, private contextService: ContextService, private formBuilder: UntypedFormBuilder, private foodTruckSvc: FoodTruckService) {
   }
+
   ngOnInit(): void {
     this.buildForm();
   }
 
   buildForm() {
     this.form = this.formBuilder.group({
-      name: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      date: ['', [Validators.required]]
+      name: [this.data ? this.data.name : '', [Validators.required]],
+      description: [this.data ? this.data.description : '', [Validators.required]],
+      date: [this.data ? this.data.date : '', [Validators.required]]
     })
 
   }
-  cancel() { }
+  cancel() {  }
 
-  save() { }
+  addFoodTruck() {
+    this.foodTruckSvc.addFoodTruck({   
+      name: this.form.get('name').value,
+      description: this.form.get('description').value,
+      availableDate: '2023-03-11T06:39:29.216789400Z',
+    }).subscribe(data => {
+      console.log(`Response ${data}`);
+    }, err => {
+      console.log(`Response ${err}`);
+    },()=>{
+      this.dialogRef.close();
+    });
+
+  }
+
+
+  updateFoodTruck() {
+    this.foodTruckSvc.updateFoodTruck({
+      id: this.data.id,
+      name: this.form.get('name').value,
+      description: this.form.get('description').value,
+      availableDate: '2023-03-11T06:39:29.216789400Z',
+    }).subscribe(data => {
+      console.log(`Response ${data}`);
+    }, err => {
+      console.log(`Response ${err}`);
+    },()=>{
+      this.dialogRef.close();
+    });
+
+  }
+
+  save() {
+    if (this.data) {
+      this.updateFoodTruck();
+    } else {
+      this.addFoodTruck();
+    }
+  }
 
   public hasError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);

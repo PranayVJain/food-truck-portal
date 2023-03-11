@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ContextService } from '../context.service';
-import { UserType } from "../user/user-type"
+import { UserType } from "../models/user-type"
 
 @Component({
   selector: 'app-login',
