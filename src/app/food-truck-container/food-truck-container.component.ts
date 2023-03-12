@@ -27,14 +27,23 @@ export class FoodTruckContainerComponent {
       this.isAdmin = true;
     }
   }
-
+  
+  /**
+   * Makes API call to get all foor trucks by date range
+   * @param start 
+   * @param end 
+   */
   getFoodTrucks(start: Date, end: Date) {
     this.foodTruckService.getAllFoodTrucksByTimeRange(start, end).subscribe((response: any) => {
       this.foodTruckList = response;
       console.log(response);
     });
   }
-
+  
+  /**
+   * Gets called when user selects date by selecting custom option in radio buttons
+   * @param radio 
+   */
   onDateRangeSelected(radio: MatRadioChange) {
     if (radio.value === 'custom') {
       this.customDateRange = true;
@@ -43,7 +52,10 @@ export class FoodTruckContainerComponent {
       this.customDateRange = false;
     }
   }
-
+  
+  /**
+   * Gets called when user selects today option in radio button
+   */
   getFoodTruckForToday(){
     let start = new Date();
     console.log(start)
@@ -52,7 +64,10 @@ export class FoodTruckContainerComponent {
     end.setHours(23,59,59,59);
     this.getFoodTrucks(start, end);
   }
-
+  
+  /**
+   * Gets called when user selects custom date from datepicker
+   */
   onCustomDateSelected(){
     let start = this.customDate;
     console.log(start);
@@ -61,6 +76,10 @@ export class FoodTruckContainerComponent {
     end.setHours(23,59,59,59);
     this.getFoodTrucks(start, end);
   }
+
+  /**
+   * Gets called when user clicks on Add food truck button in UI
+   */
   openAddFoodTruckDialog() {
     const dialogRef = this.dialog.open(AddFoodTruckComponent, {
       panelClass: "dialog-form-default",

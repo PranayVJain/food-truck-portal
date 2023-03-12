@@ -21,7 +21,6 @@ export class AddFoodTruckComponent implements OnInit {
   form: UntypedFormGroup;
   inProgress: boolean;
 
-
   constructor(public dialogRef: MatDialogRef<AddFoodTruckComponent>,
     @Inject(MAT_DIALOG_DATA) public data: Foodtruck,
     private contextService: ContextService,
@@ -59,9 +58,7 @@ export class AddFoodTruckComponent implements OnInit {
     }, () => {
       this.dialogRef.close(true);
     });
-
   }
-
 
   updateFoodTruck() {
     this.foodTruckSvc.updateFoodTruck({
@@ -77,7 +74,6 @@ export class AddFoodTruckComponent implements OnInit {
     }, () => {
       this.dialogRef.close(true);
     });
-
   }
 
   save() {
