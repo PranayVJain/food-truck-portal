@@ -5,6 +5,7 @@ import { Foodtruck } from '../models/foodtruck';
 import { MatDialog } from '@angular/material/dialog';
 import { AddFoodTruckComponent } from '../dialogs/add-food-truck/add-food-truck.component';
 import { FoodTruckService } from '../service/food-truck.service';
+import { ContextService } from '../context.service';
 
 @Component({
   selector: 'app-food-trucks-list',
@@ -14,12 +15,22 @@ import { FoodTruckService } from '../service/food-truck.service';
 export class FoodTrucksListComponent {
   displayedColumns: string[] = ['name', 'description', 'availableDate', 'edit'];
   dataSource = new MatTableDataSource<any>();
+  isAdmin: boolean;
 
   @Input('foodTruckList') foodTruckList: any[];
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private dialog: MatDialog, private foodTruckService: FoodTruckService) { }
+  constructor(private dialog: MatDialog, 
+    private foodTruckService: FoodTruckService,
+    private contextService: ContextService) { }
+
+  ngOnInit() {
+    this.isAdmin = this.contextService.isAdmin();
+    if(!this.isAdmin){
+      this.displayedColumns.pop();
+    }
+  }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;

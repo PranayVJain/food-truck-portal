@@ -44,6 +44,7 @@ export class AddFoodTruckComponent implements OnInit {
   cancel() {  }
 
   addFoodTruck() {
+
     this.foodTruckSvc.addFoodTruck({   
       name: this.form.get('name').value,
       description: this.form.get('description').value,

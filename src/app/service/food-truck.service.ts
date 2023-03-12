@@ -22,6 +22,5 @@ export class FoodTruckService {
   getAllFoodTrucks(): any {
     return this.http.get(this.baseUrl + '/v1/foodtrucks');
   }
-
-
+  
 }

@@ -16,10 +16,10 @@
       <!-- Date Column -->
       <ng-container matColumnDef="availableDate">
         <th mat-header-cell *matHeaderCellDef> Date </th>
-        <td mat-cell *matCellDef="let element"> {{element.availableDate | date: 'dd/MM/YYYY'}} </td>
+        <td mat-cell *matCellDef="let element"> {{element.availableDate + 'Z' | date }} </td>
       </ng-container>
 
-      <ng-container matColumnDef="edit">
+      <ng-container matColumnDef="edit" *ngIf="isAdmin">
         <th mat-header-cell *matHeaderCellDef> </th>
         <td mat-cell *matCellDef="let element"> <button mat-icon-button (click)="onEditRow(element)"><mat-icon>edit</mat-icon></button> </td>
       </ng-container>

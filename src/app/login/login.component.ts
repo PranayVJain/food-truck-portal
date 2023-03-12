@@ -14,7 +14,9 @@ export class LoginComponent implements OnInit {
   username: string;
   password: string;
   form: UntypedFormGroup;
-  constructor(private contextService: ContextService, private formBuilder: UntypedFormBuilder, private router: Router) {
+  constructor(private contextService: ContextService,
+    private formBuilder: UntypedFormBuilder,
+    private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,16 +34,17 @@ export class LoginComponent implements OnInit {
   login(): void {
     if (this.form.get('username').value == 'admin' && this.form.get('password').value == 'admin') {
       this.contextService.setUser({ name: this.form.get('username').value, 'type': UserType.ADMIN });
-      this.router.navigate(["/"]);
+      this.router.navigate(["/foodtrucks"]);
+      this.contextService.setIsUserLoggedIn(true);
     } else {
       alert("Invalid credentials");
     }
-
   }
 
   loginAsGuestUser() {
     this.contextService.setUser({ name: 'Guest', 'type': UserType.GUEST });
-    this.router.navigate(["/"]);
+    this.router.navigate(["/foodtrucks"]);
+    this.contextService.setIsUserLoggedIn(true);
   }
 
 }

@@ -6,9 +6,9 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: '', component: HomeComponent , children: [
-    { path: 'about', component: AboutComponent },
+  { path: 'login', component: LoginComponent},
+  { path: '', component: HomeComponent  ,  children: [
+    { path: 'about', component: AboutComponent, },
     { path: 'foodtrucks', component: FoodTruckContainerComponent }
   ]}
 ];

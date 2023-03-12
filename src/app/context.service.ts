@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 import { User } from './models/user';
+import { UserType } from './models/user-type';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContextService {
 
-  currentUser: User;
+  private currentUser: User;
+  private isLogedIn: boolean;
 
   constructor() { }
 
@@ -17,4 +19,17 @@ export class ContextService {
   getUser(){
     return this.currentUser;
   }
+
+  isUserLogged(): boolean {
+    return this.isLogedIn;
+  }
+
+  setIsUserLoggedIn(isLoggedIn: boolean){
+    this.isLogedIn = isLoggedIn;
+  }
+
+  isAdmin(): boolean {
+    return this.currentUser.type === UserType.ADMIN;
+  }
+
 }

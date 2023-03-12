@@ -1,6 +1,6 @@
 <div>
     <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="today" (change)="onDateRangeSelected($event)">Today</mat-radio-button>
+        <mat-radio-button value="today" checked selected (change)="onDateRangeSelected($event)">Today</mat-radio-button>
         <mat-radio-button value="custom" (change)="onDateRangeSelected($event)">Custom</mat-radio-button>
     </mat-radio-group>
 
@@ -17,6 +17,6 @@
         </mat-datepicker>
     </mat-form-field>
 
-    <button mat-button (click)="openAddFoodTruckDialog()">Add Food Truck</button>
+    <button mat-button (click)="openAddFoodTruckDialog()" *ngIf="isAdmin">Add Food Truck</button>
     <app-food-trucks-list *ngIf="foodTruckList.length" [foodTruckList] = "foodTruckList"></app-food-trucks-list>
 </div>
