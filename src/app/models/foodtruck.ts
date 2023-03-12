@@ -1,6 +1,6 @@
 export interface Foodtruck {
     id: string,
     name: string,
-    date: string,
+    availableDate: string,
     description: string
 }

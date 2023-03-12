@@ -41,6 +41,7 @@ export class FoodTrucksListComponent {
   }
 
   onEditRow(row: any) {
+    console.log(row);
     const dialogRef = this.dialog.open(AddFoodTruckComponent, {
       panelClass: "dialog-form-default",
       width: '600px',

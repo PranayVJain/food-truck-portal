@@ -17,7 +17,7 @@ export class AddFoodTruckComponent implements OnInit {
   disableButton: boolean = false
   name: string;
   description: string;
-  date: string;
+  availableDate: string;
   form: UntypedFormGroup;
   inProgress: boolean;
 
@@ -40,7 +40,7 @@ export class AddFoodTruckComponent implements OnInit {
     this.form = this.formBuilder.group({
       name: [this.data ? this.data.name : '', [Validators.required]],
       description: [this.data ? this.data.description : '', [Validators.required]],
-      date: [this.data ? datepipe.transform(this.data.date, 'dd/MM/yyyy') : '', [Validators.required]]
+      availableDate: [this.data ? new Date(this.data.availableDate + 'Z') : '', [Validators.required]]
     })
 
   }
@@ -50,7 +50,7 @@ export class AddFoodTruckComponent implements OnInit {
     this.foodTruckSvc.addFoodTruck({
       name: this.form.get('name').value,
       description: this.form.get('description').value,
-      availableDate: this.form.get('date').value,
+      availableDate: this.form.get('availableDate').value,
     }).subscribe(data => {
       this._snackBar.open("FoodTruck Added!", "close", { duration: 2000 })
       console.log(`Response ${data}`);
@@ -68,7 +68,7 @@ export class AddFoodTruckComponent implements OnInit {
       id: this.data.id,
       name: this.form.get('name').value,
       description: this.form.get('description').value,
-      availableDate: this.form.get('date').value,
+      availableDate: this.form.get('availableDate').value,
     }).subscribe(data => {
       this._snackBar.open("FoodTruck Updated!", "close", { duration: 2000 })
       console.log(`Response ${data}`);
