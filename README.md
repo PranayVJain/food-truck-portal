@@ -16,6 +16,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ![Food Truck Admin](https://user-images.githubusercontent.com/29925515/224546889-6acb3aa6-c6ab-4e40-909c-a2682fa2e9a9.gif)
 
 ### Admin editing the food truck.
+![Food Truck Admin Edit](https://user-images.githubusercontent.com/29925515/224549308-3d5dee22-93a1-4203-b030-ff9a965ef937.gif)
 
 ### Guest user getting the list of today's available food trucks.
 ![Food Truck Guest](https://user-images.githubusercontent.com/29925515/224548448-763f2daf-3cfc-443f-a8fd-4d0454c10572.gif)
