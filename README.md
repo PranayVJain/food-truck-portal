@@ -2,6 +2,12 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.1.3.
 
+## Requirements
+1. Data entry of the food trucks for each day.
+2. Each food truck only needs a name and a date, not a location.
+3. Editing food trucks if we have a typo.
+4. Listing today’s Food trucks.
+
 ## About the application
 
 - An admin user can add food trucks and guest user can view the food trucks.
