@@ -1,22 +1,31 @@
 <div>
-    <mat-radio-group aria-label="Select an option">
-        <mat-radio-button value="today" checked selected (change)="onDateRangeSelected($event)">Today</mat-radio-button>
-        <mat-radio-button value="custom" (change)="onDateRangeSelected($event)">Custom</mat-radio-button>
-    </mat-radio-group>
+    <div class="fiter-container">
+        <div class="radio-container">
+            <mat-radio-group aria-label="Select an option">
+                <mat-radio-button value="today" checked selected
+                    (change)="onDateRangeSelected($event)">Today</mat-radio-button>
+                <mat-radio-button value="custom" (change)="onDateRangeSelected($event)">Custom</mat-radio-button>
+            </mat-radio-group>
 
-    <mat-form-field appearance="fill" class="example-form-field" *ngIf="customDateRange">
-        <mat-label>Choose a date</mat-label>
-        <input matInput [matDatepicker]="datepicker">
-        <mat-hint>MM/DD/YYYY</mat-hint>
-        <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
-        <mat-datepicker #datepicker>
-            <mat-datepicker-actions>
-                <button mat-button matDatepickerCancel>Cancel</button>
-                <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
-            </mat-datepicker-actions>
-        </mat-datepicker>
-    </mat-form-field>
+            <span class="custom-date-input">
+                <mat-form-field appearance="fill" class="example-form-field" *ngIf="customDateRange">
+                    <mat-label>Choose a date</mat-label>
+                    <input matInput [matDatepicker]="datepicker" [(ngModel)]="customDate">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+                    <mat-datepicker #datepicker>
+                        <mat-datepicker-actions>
+                            <button mat-button matDatepickerCancel>Cancel</button>
+                            <button mat-raised-button color="primary" matDatepickerApply
+                                (click)="onCustomDateSelected()">Apply</button>
+                        </mat-datepicker-actions>
+                    </mat-datepicker>
+                </mat-form-field>
+            </span>
+        </div>
 
-    <button mat-button (click)="openAddFoodTruckDialog()" *ngIf="isAdmin">Add Food Truck</button>
-    <app-food-trucks-list *ngIf="foodTruckList.length" [foodTruckList] = "foodTruckList"></app-food-trucks-list>
+        <button class="add-button" color="primary" matTooltip="Add food truck here" mat-mini-fab
+            (click)="openAddFoodTruckDialog()" *ngIf="isAdmin"><mat-icon>add</mat-icon></button>
+    </div>
+    <app-food-trucks-list *ngIf="foodTruckList.length" [foodTruckList]="foodTruckList"></app-food-trucks-list>
 </div>

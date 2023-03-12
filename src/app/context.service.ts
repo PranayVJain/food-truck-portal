@@ -29,7 +29,11 @@ export class ContextService {
   }
 
   isAdmin(): boolean {
-    return this.currentUser.type === UserType.ADMIN;
+    let isAdminLocal: boolean = false;
+    if(this.currentUser){
+      isAdminLocal = this.currentUser.type === UserType.ADMIN;
+    }
+    return isAdminLocal;
   }
 
 }

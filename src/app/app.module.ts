@@ -30,9 +30,10 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatDialogModule } from '@angular/material/dialog';
 import { HttpClientModule } from '@angular/common/http';
 import { FoodTrucksListComponent } from './food-trucks-list/food-trucks-list.component';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { CommonModule } from '@angular/common';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 @NgModule({
@@ -74,6 +75,8 @@ import { CommonModule } from '@angular/common';
     HttpClientModule,
     MatTableModule,
     MatPaginatorModule,
+    MatButtonModule,
+    MatSnackBarModule,
     RouterModule.forRoot([])
   ],
   providers: [],

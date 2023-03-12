@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 
@@ -22,5 +22,11 @@ export class FoodTruckService {
   getAllFoodTrucks(): any {
     return this.http.get(this.baseUrl + '/v1/foodtrucks');
   }
-  
+
+  getAllFoodTrucksByTimeRange(fromDate: Date, toDate: Date): any {
+    const params = new HttpParams()
+      .set('fromDate', fromDate.toISOString())
+      .set('toDate', toDate.toISOString());
+    return this.http.get(this.baseUrl + '/v1/foodtrucks', { params });
+  }
 }

@@ -19,8 +19,9 @@
         </tr></table>
       </form>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions class="actions">
       <button mat-raised-button (click)="login()" color="primary">Login</button>
-      <button mat-raised-button (click)="loginAsGuestUser()" color="primary">Login as guest</button>
+      <mat-divider></mat-divider>
+      <button mat-raised-button (click)="loginAsGuestUser()" color="accent">Login as guest</button>
     </mat-card-actions>
   </mat-card>

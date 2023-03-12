@@ -1,11 +1,15 @@
 <div mat-dialog-title>
-    <h3 class="dialog-title">{{!data ? "Add": "Edit"}} Food Truck</h3>
-    <span class="flex-spacer"></span>
-    <button mat-dialog-close mat-icon-button>
-        <mat-icon>close</mat-icon>
-    </button>
+    <div class="title-bar">
+        <div>
+            <h3 class="dialog-title">{{!data ? "Add": "Edit"}} Food Truck</h3>
+            <span class="flex-spacer"></span>
+        </div>
+        <button class="title-close-btn" mat-dialog-close mat-icon-button>
+            <mat-icon>close</mat-icon>
+        </button>
+    </div>
 </div>
-
+<mat-spinner *ngIf="inProgress"></mat-spinner>
 <form [formGroup]="form">
     <div mat-dialog-content class="row-grid">
         <mat-form-field appearance="outline">
@@ -40,6 +44,6 @@
     <div mat-dialog-actions>
         <span class="flex-spacer"></span>
         <button id="cancel" color="primary" mat-dialog-close mat-button (click)="cancel()">Cancel</button>
-        <button id="save" color="primary" (click)="save()" mat-flat-button>Add</button>
+        <button id="save" color="primary" (click)="save()"  [disabled]="!form.valid" mat-flat-button>Add</button>
     </div>
 </form>

@@ -1,0 +1,14 @@
+.fiter-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    margin: 1em;
+}
+
+.add-button {
+    align-self: center;
+    justify-self: end;
+}
+
+.custom-date-input {
+    margin-left: 1em;
+}

@@ -21,13 +21,13 @@ export class FoodTrucksListComponent {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor(private dialog: MatDialog, 
+  constructor(private dialog: MatDialog,
     private foodTruckService: FoodTruckService,
     private contextService: ContextService) { }
 
   ngOnInit() {
     this.isAdmin = this.contextService.isAdmin();
-    if(!this.isAdmin){
+    if (!this.isAdmin) {
       this.displayedColumns.pop();
     }
   }
@@ -47,9 +47,12 @@ export class FoodTrucksListComponent {
       data: row,
     });
     dialogRef.afterClosed().subscribe(result => {
-      this.foodTruckService.getAllFoodTrucks().subscribe((response: any) => {
-        this.dataSource.data =  response;
-     });
+      if (result) {
+        this.foodTruckService.getAllFoodTrucks().subscribe((response: any) => {
+          this.dataSource.data = response;
+        });
+      }
+
     });
 
   }

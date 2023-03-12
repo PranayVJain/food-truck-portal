@@ -5,6 +5,7 @@ import { Foodtruck } from 'src/app/models/foodtruck';
 import { FoodTruckService } from 'src/app/service/food-truck.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { DatePipe } from '@angular/common';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-add-food-truck',
@@ -18,14 +19,16 @@ export class AddFoodTruckComponent implements OnInit {
   description: string;
   date: string;
   form: UntypedFormGroup;
- 
+  inProgress: boolean;
+
 
   constructor(public dialogRef: MatDialogRef<AddFoodTruckComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: Foodtruck, 
-    private contextService: ContextService, 
-    private formBuilder: UntypedFormBuilder, 
-    private foodTruckSvc: FoodTruckService
-    ) {
+    @Inject(MAT_DIALOG_DATA) public data: Foodtruck,
+    private contextService: ContextService,
+    private formBuilder: UntypedFormBuilder,
+    private foodTruckSvc: FoodTruckService,
+    private _snackBar: MatSnackBar
+  ) {
   }
 
   ngOnInit(): void {
@@ -41,20 +44,20 @@ export class AddFoodTruckComponent implements OnInit {
     })
 
   }
-  cancel() {  }
+  cancel() { }
 
   addFoodTruck() {
-
-    this.foodTruckSvc.addFoodTruck({   
+    this.foodTruckSvc.addFoodTruck({
       name: this.form.get('name').value,
       description: this.form.get('description').value,
       availableDate: this.form.get('date').value,
     }).subscribe(data => {
+      this._snackBar.open("FoodTruck Added!", "close", { duration: 2000 })
       console.log(`Response ${data}`);
     }, err => {
       console.log(`Response ${err}`);
-    },()=>{
-      this.dialogRef.close();
+    }, () => {
+      this.dialogRef.close(true);
     });
 
   }
@@ -67,16 +70,18 @@ export class AddFoodTruckComponent implements OnInit {
       description: this.form.get('description').value,
       availableDate: this.form.get('date').value,
     }).subscribe(data => {
+      this._snackBar.open("FoodTruck Updated!", "close", { duration: 2000 })
       console.log(`Response ${data}`);
     }, err => {
       console.log(`Response ${err}`);
-    },()=>{
-      this.dialogRef.close();
+    }, () => {
+      this.dialogRef.close(true);
     });
 
   }
 
   save() {
+    this.inProgress = true;
     if (this.data) {
       this.updateFoodTruck();
     } else {

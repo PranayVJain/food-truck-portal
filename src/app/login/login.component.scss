@@ -8,3 +8,8 @@
     top: 20%;
     right: 50%;
 }
+
+.actions {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}

@@ -5,7 +5,17 @@
     flex: 1 1 auto;
 }
 
-.row-grid{
+.row-grid {
     display: grid;
     grid-template-rows: auto;
+}
+
+.title-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.title-close-btn {
+    align-self: center;
+    justify-self: end;
 }
